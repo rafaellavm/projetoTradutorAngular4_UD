@@ -25,4 +25,8 @@ export class PainelComponent implements OnInit {
     console.log(this.resposta);
   }
 
+  public verificarResposta(): void{
+    console.log('Verificar resposta: ' + this.resposta);
+  }
+
 }
