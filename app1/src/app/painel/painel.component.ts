@@ -19,4 +19,8 @@ export class PainelComponent implements OnInit {
   ngOnInit() {
   }
 
+  public atualizaResposta(): void{
+    console.log('teste');
+  }
+
 }
