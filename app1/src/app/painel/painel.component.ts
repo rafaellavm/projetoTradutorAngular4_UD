@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Frase} from '../shared/frase.model';
-import {FRASES} from './frases-mock';
+import { Frase } from '../shared/frase.model';
+import { FRASES } from './frases-mock';
 
 @Component({
   selector: 'app-painel',
@@ -16,20 +16,36 @@ export class PainelComponent implements OnInit {
   public rodadaFrase: Frase;
 
   constructor() {
-    this.rodadaFrase =  this.frases[this.rodada];
+    this.rodadaFrase = this.frases[this.rodada];
     console.log(this.rodadaFrase);
-   }
+  }
 
   ngOnInit() {
   }
 
-  public atualizaResposta(resposta: Event): void{
+  public atualizaResposta(resposta: Event): void {
     this.resposta = (<HTMLInputElement>resposta.target).value;
     console.log(this.resposta);
   }
 
-  public verificarResposta(): void{
-    console.log('Verificar resposta: ' + this.resposta);
+  public verificarResposta(): void {
+
+    if (this.rodadaFrase.frasePtBr == this.resposta) {
+      alert('A tradução está correta!');
+      
+      //trocar pergunta da rodada
+      this.rodada++;
+
+      //atualiza o objeto rodada frase
+      //console.log('Verificar rodada: ' + this.rodada);
+      this.rodadaFrase = this.frases[this.rodada];
+
+      console.log(this.rodadaFrase);
+    }
+    else {
+      alert('A tradução está incorreta!');
+    }
+
   }
 
 }
