@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Coracao } from '../shared/coracao.model';
 
 @Component({
@@ -8,8 +8,7 @@ import { Coracao } from '../shared/coracao.model';
 })
 export class TentativasComponent implements OnInit {
 
-  //public coracaoVazio: string = "../../assets/coracao_vazio.png";
-  //public coracaoCheio: string = "../../assets/coracao_cheio.png";
+  @Input() public tentativas: number;
 
   public coracoes: Coracao[] = [
     new Coracao(true), //como no construtor os outros parãmetros são default não precisa passar
@@ -19,9 +18,11 @@ export class TentativasComponent implements OnInit {
 
   constructor() { 
     console.log(this.coracoes);
+    
   }
 
-  ngOnInit() {
+  ngOnInit() { // método do ciclo de vida do componente
+    console.log('tentativas recebidas do painel = ', this.tentativas);
   }
 
 }
