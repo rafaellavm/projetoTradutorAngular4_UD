@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { Frase } from '../shared/frase.model'
 import { FRASES } from './frases-mock'
@@ -20,6 +20,11 @@ export class PainelComponent implements OnInit {
   public progresso: number = 0;
   public tentativas: number = 3;
 
+  //cria um atributo público, associa a esse atributo uma instância do eventmitter, 
+  //e ao término de tudo isso, 'decore' esse atributo de tal forma que ele possa ser exposto a componentes pais (painel => app)
+  //no painel: <app-painel (encerrarJogo)="encerrarJogo($event)"></app-painel> => (encerrarJogo) = método do app // encerrarJogo($event) => atributo do painel
+  @Output() public encerrarJogo: EventEmitter<string> = new EventEmitter(); 
+
   constructor() {
     this.atualizaRodada()
   }
@@ -29,7 +34,6 @@ export class PainelComponent implements OnInit {
 
   public atualizaResposta(resposta: Event): void {
     this.resposta = (<HTMLInputElement>resposta.target).value;
-    //console.log(this.resposta)
   }
 
   public verificarResposta(): void {
@@ -39,15 +43,14 @@ export class PainelComponent implements OnInit {
       //trocar pergunta da rodada
       this.rodada++;
 
-      console.log('oi');
-
       //progresso
       this.progresso = this.progresso + (100 / this.frases.length)
 
-      console.log('progresso = ', this.progresso);
+      //console.log('progresso = ', this.progresso);
 
       if (this.rodada === 4) {
-        alert('Concluído');
+        //alert('Concluído');
+        this.encerrarJogo.emit('vitoria'); //passa um parâmetro pro método 'encerrarjogo' no app.component. Passa do filho pro pai
       }
 
       //atualiza o objeto rodadaFrase 
@@ -58,7 +61,8 @@ export class PainelComponent implements OnInit {
       this.tentativas--;
 
       if (this.tentativas === -1) {
-        alert('Você perdeu todas as tentativas');
+        //alert('Você perdeu todas as tentativas');
+        this.encerrarJogo.emit('derrota'); //passa um parâmetro pro método 'encerrarjogo' no app.component. Passa do filho pro pai
       }
     }
   }

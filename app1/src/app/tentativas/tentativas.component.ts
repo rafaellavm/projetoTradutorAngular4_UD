@@ -31,7 +31,7 @@ export class TentativasComponent implements OnInit, OnChanges {
     }
 
     //console.log('array de coracoes = ', this.coracoes);
-    //console.log('tentativas recebidas do painel = ', this.tentativas);
+    console.log('tentativas recebidas do painel = ', this.tentativas);
     //console.log('númeo de corações painel = ', this.coracoes.length);
   }
 
