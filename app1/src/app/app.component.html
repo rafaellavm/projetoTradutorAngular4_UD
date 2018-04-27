@@ -5,12 +5,21 @@
 
 <!--ng-template é exibido quando a instrução do ngif é falsa -->
 <ng-template #fimDeJogo>
-    <div class="container" style="margin-top:50px">
-<div class="row">
-    <div class="col">
-        <h3 style="color:red">Fim de jogo, infelizmente você perdeu</h3>
+    <div *ngIf="tipoEncerramento === 'derrota'; else fimDeJogoVitoria" class="container" style="margin-top:50px">
+    <div class="row">
+        <div class="col">
+            <h3 style="color:red">Fim de jogo, infelizmente você perdeu</h3>
+        </div>
+    </div>
 </div>
-</div>
-</div>
+</ng-template>
 
+<ng-template #fimDeJogoVitoria>
+    <div class="container" style="margin-top:50px">
+    <div class="row">
+        <div class="col">
+            <h3 style="color:green">Fim de jogo, você ganhou!</h3>
+        </div>
+    </div>
+</div>
 </ng-template>
