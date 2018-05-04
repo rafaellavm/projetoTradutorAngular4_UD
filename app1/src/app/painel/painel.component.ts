@@ -51,8 +51,6 @@ export class PainelComponent implements OnInit, OnDestroy {
       //progresso
       this.progresso = this.progresso + (100 / this.frases.length)
 
-      //console.log('progresso = ', this.progresso);
-
       if (this.rodada === 4) {
         //alert('Concluído');
         this.encerrarJogo.emit('vitoria'); //passa um parâmetro pro método 'encerrarjogo' no app.component. Passa do filho pro pai

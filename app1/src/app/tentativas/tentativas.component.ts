@@ -16,10 +16,7 @@ export class TentativasComponent implements OnInit, OnChanges {
     new Coracao(true)
   ];
 
-  constructor() {
-    //console.log(this.coracoes);
-
-  }
+  constructor() {}
 
   //é solicitado quando há input dos dados do pai pro filho. Quando os valores recebidos são alterados o método também é executado
   ngOnChanges() {
@@ -30,14 +27,10 @@ export class TentativasComponent implements OnInit, OnChanges {
       this.coracoes[indice - 1].cheio = false; //coloca o coração falso na tentativa em questão
     }
 
-    //console.log('array de coracoes = ', this.coracoes);
     console.log('tentativas recebidas do painel = ', this.tentativas);
-    //console.log('númeo de corações painel = ', this.coracoes.length);
   }
 
   // método do ciclo de vida do componente// É solicitado uma única vez quando o componente é iniciado
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
 }
